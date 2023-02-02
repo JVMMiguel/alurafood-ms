@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  db-microservices:
+    image: mysql:8.0.29
+    restart: always
+    environment:
+      # Database Name
+      #MYSQL_DATABASE: 'databaseName'
+      # Acesso padrão (Não obrigatorio)
+      MYSQL_USER: 'mysql'
+      MYSQL_PASSWORD: 'mysql'
+      # Acesso Root (Necessario para criar database se não existir)
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      # <Porta local exposta> : <Porta no container exposta>
+      - '3306:3306'
+    expose:
+      # Abrir porta X no container
+      - '3306'
+      # Onde nossos dados serão persistidos
+    volumes:
+      - vol-db-microservices:/var/lib/mysql
+# Volumes
+volumes:
+  vol-db-microservices:
